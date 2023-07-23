@@ -1,0 +1,48 @@
+<html>
+<head>
+    <style>
+        /* CSS for the download link */
+        a {
+            color: red;
+            text-decoration: none; /* Remove underline for the link */
+        }
+
+        a:hover {
+            text-decoration: underline; /* Add underline on hover */
+        }
+    </style>
+<head>
+<body>
+ <br>
+    <label for="certificateID">Enter Certificate ID:</label>
+    <input type="text" id="certificateID">
+    <button onclick="verifyCertificate()">Verify</button>
+
+    <div id="verificationResult"></div>
+
+    <script>
+        function verifyCertificate() {
+            const certificateID = document.getElementById("certificateID").value;
+
+            // Replace the following with your list of valid certificate IDs and their corresponding Google Drive sharing links
+            const certificateData = {
+                "BGFC-01-0001": "https://drive.google.com/file/d/1FkfBKpWiYDmoULovhrTyD_FavMD_9Vyz/view?usp=sharing",
+                "XYZ789": "https://drive.google.com/file/d/xyz789/view"
+            };
+
+            const resultDiv = document.getElementById("verificationResult");
+            if (certificateID in certificateData) {
+                const certificateLink = certificateData[certificateID];
+                resultDiv.innerHTML = '<p>Certificate ID "' + certificateID + '" is valid.</p>';
+                resultDiv.innerHTML += '<a href="' + certificateLink + '" target="_blank" rel="noopener">Download Certificate</a>';
+
+                // Update the link color to red
+                const downloadLink = resultDiv.querySelector('a');
+                downloadLink.style.color = 'red';
+            } else {
+                resultDiv.innerHTML = '<p>Certificate ID "' + certificateID + '" is not valid.</p>';
+            }
+        }
+    </script>
+</body>
+</html>
